@@ -6,21 +6,22 @@ body {
 	color: rgba(255, 255, 255, 0.9);
 }
 
-.nav-item {
+.nav_item {
 	padding-right: 5rem;
 }
 
 .brand_title {
 	font-family: 'Viga', sans-serif;
 	font-size: 28px;
+	padding-right: 5rem;
 }
 
 .nav_link {
 	font-size: 18px;
 }
 
-.bg_purple {
-	background-color: #cb61f22a;
+.bg_transparent {
+	background-color: #00000000;
 }
 
 .main_page {
@@ -49,6 +50,7 @@ body {
 	text-align: center;
 	/* font-weight: 900; */
 	color: whitesmoke;
+	text-shadow: 0px 5px 20px rgba(75, 11, 20, 0.4);
 }
 
 .main_button {
@@ -73,22 +75,6 @@ body {
 	justify-content: center;
 	height: 100vh;
 	background-color: #fb5a51;
-}
-
-/* CUSTOM SCROLLBAR */
-
-::-webkit-scrollbar {
-	width: 12px;
-}
-
-/* Track */
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-	background-color: #fc5165;
-	-webkit-box-shadow: inset 0 0 6px rgba(184, 184, 184, 0.5);
 }
 
 /* SVG ANIMATION */
