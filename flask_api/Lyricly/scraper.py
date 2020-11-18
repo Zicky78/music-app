@@ -9,22 +9,18 @@ import sqlite3
 load_dotenv()
 
 client_access_token = getenv('CLIENT_ACCESS_TOKEN')
-genius = lyricsgenius.Genius(client_access_token, remove_section_headers=True,
-                 skip_non_songs=True, excluded_terms=["Remix", "Live", "Edit", "Mix", "Club"])
-# regex for cleaning strings
-def clean(text):
-    lyrics = re.sub('[^a-zA-Z ]' ,'', text)
-    lyrics = lyrics.lower()
-    return lyrics
+genius = lyricsgenius.Genius(client_access_token, timeout=60, remove_section_headers=True,
+                 skip_non_songs=True, excluded_terms=["Remix", "Live", "Edit", "Mix", "Club", "Commentary", "Demo"])
 
-# Create list of sample artists
 
-sample_artists = ['One Republic']
+sample_artists = ['Marshmello']
+                #   'Red Hot Chili Peppers','Lynyrd Skynyrd','Sheryl Crow','Glint', 'Mike Mains and The Branches',
+                #   'Frank Sinatra', 'Spoon', 'The Fray', "Jed's A Millionaire", 'Nano', 'Oral Cigarettes','One OK Rock',
+                #   'Sangatsu no Phantasia','Roddy Rich', 'Juice WRLD' ]
 
 # Names ready to be Q'd
 '''         
-                'The chainsmokers', 'Bruno Mars', 'Queen','One Republic','Tones and I', 'Anuel AA', 'Doja Cat',
-                  'Sia', 'Lewis Capaldi']
+            
 '''
 #Starting the song search for the artists in question and seconds count
 query_number = 0
@@ -37,7 +33,7 @@ for artist in sample_artists:
     #Empty lists for artist, title, album and lyrics information
     print('\nQuery number:', query_number)
     #Search for max_songs = n and sort them by popularity
-    artist = genius.search_artist(artist, max_songs = 100, sort='popularity')
+    artist = genius.search_artist(artist, sort='popularity')
     songs = artist.songs
     song_number = 0
     #Append all information for each song in the previously created lists
@@ -58,6 +54,5 @@ for artist in sample_artists:
 tracklist = pd.DataFrame({'artist':artists, 'title':titles, 'lyrics':lyrics})   
 time3 = time.time()   
 print('\nFinal tracklist of', query_number, 'artists finished in', round(time3-time1,2), 'seconds.')
-print(tracklist['lyrics'])
 #Save the final tracklist to csv format
 tracklist.to_sql("lyrics", sqlite3.connect("songs.db"), if_exists='append', index=False)
