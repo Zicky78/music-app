@@ -7,6 +7,7 @@ import sqlalchemy
 import sqlite3
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from Lyricly.word_count import word_freq
 from Lyricly import db
 from Lyricly import app
 from Lyricly.forms import RegistrationForm, LoginForm
@@ -99,6 +100,26 @@ def song_search():
 
 
 '''Route that makes a database call to the lyrics column to pull lyrics and analyze word count to be sent to the front end'''
+
 @app.route('/word_count', methods=['POST'])
 def word_count():
+    print("Incoming...")
+    print(request.get_json())
+    data = request.get_json()
+    artist = []
+    title = []
+    Lyrics = []
+    # iterate through json format
+    for i in data:
+        artist.append(data[i]['artist']) 
+        title.append(data[i]['title'])
+    
+    for i in range(len(artist)):
+        query = 'SELECT DISTINCT lyrics FROM lyrics WHERE artist=\'' + \
+        artist[i] + '\' AND title=\'' + title[i] + '\';'
+        # append lyrics to lyrics list
+        pass
+
+
+
     pass
