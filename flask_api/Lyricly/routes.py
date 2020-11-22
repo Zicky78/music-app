@@ -11,7 +11,7 @@ from Lyricly.word_count import word_freq
 from Lyricly import db
 from Lyricly import app
 from Lyricly.forms import RegistrationForm, LoginForm
-from Lyricly.models import *
+from Lyricly.models import Lyrics
 from os import getenv
 from dotenv import load_dotenv
 from flask import render_template, url_for, flash, redirect, jsonify, request
@@ -45,35 +45,23 @@ def login():
 @app.route('/song', methods=['POST'])
 def song_search():
     print("Incoming...")
-    print(request.get_json())
     # recieve artist name / song namr in json format
     data = request.get_json()
-    empty = []
-    # cross reference with our database
-    conn = sqlite3.connect('Lyricly\songs.db')
-    curs = conn.cursor()
-    print(data['artist'])
-    query = 'SELECT DISTINCT artist, title FROM lyrics WHERE artist=\'' + \
-        data['artist'] + '\' AND title=\'' + data['title'] + '\';'
-    # print(query)
-    execute = curs.execute(query).fetchall()
-    print(curs.execute(query).fetchall())
-    print(data['artist'])
-
+    
+    query = Lyrics.query.filter_by(artist=data['artist'], title=data['title']).first()
+    
     # if return [] statment
-    if execute == empty:
+    if query == None:
         load_dotenv()
-        conn.close()
 
+        # API access
         client_access_token = getenv('CLIENT_ACCESS_TOKEN')
         genius = lyricsgenius.Genius(client_access_token, remove_section_headers=True,
                                      skip_non_songs=True, excluded_terms=["Remix", "Live", "Edit", "Mix", "Club"])
 
         # song search
-        filtered_artist = genius.search_artist(
-            data['artist'], max_songs=0, sort='popularity')
         search = genius.search_song(
-            data['title'], artist=filtered_artist.name, get_full_info=True)
+            data['title'], artist=data['artist'], get_full_info=True)
 
         # list for database conversion
         artist = []
@@ -88,14 +76,11 @@ def song_search():
 
         tracklist.to_sql("lyrics", sqlite3.connect(
             "Lyricly\songs.db"), if_exists='append', index=False)
-
-        # check database for new row
-        conn = sqlite3.connect('Lyricly\songs.db')
-        curs = conn.cursor()
-        execute = curs.execute(query).fetchall()
-        print(curs.execute(query).fetchall())
+        
+        query = Lyrics.query.filter_by(artist=data['artist'], title=data['title']).first()
 
     # send artist name and song name to genius web scraper
+    print(query.title,'by:', query.artist)
     return jsonify(data)
 
 
@@ -108,15 +93,16 @@ def word_count():
     data = request.get_json()
     artist = []
     title = []
-    Lyrics = []
+    lyrics = []
     # iterate through json format
     for i in data:
         artist.append(data[i]['artist']) 
         title.append(data[i]['title'])
     
     for i in range(len(artist)):
-        query = 'SELECT DISTINCT lyrics FROM lyrics WHERE artist=\'' + \
-        artist[i] + '\' AND title=\'' + title[i] + '\';'
+        query = Lyrics.query.filter_by(artist=data['artist'], title=data['title']).first()
+        
+        lyrics.append(query.lyrics)
         # append lyrics to lyrics list
         pass
 
