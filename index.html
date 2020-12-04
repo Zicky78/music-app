@@ -7,9 +7,13 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Style Sheet -->
     <link rel="stylesheet" href="css/styles.css">
     
     <title>Lyricalyze</title>
@@ -17,11 +21,13 @@
   <body>
 
     <div class="container-fluid main_page">
+
+      <!-- CORNER SVG-->
       <svg class="corner_svg" viewBox="0 0 1100 726" fill="none" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
         <g id="music3 1" clip-path="url(#clip0)">
         <g id="background">
         <path id="Vector" d="M663.62 103.28C651.674 103.28 641.99 112.964 641.99 124.91C641.99 136.856 651.674 146.54 663.62 146.54C675.566 146.54 685.25 136.856 685.25 124.91C685.25 112.964 675.566 103.28 663.62 103.28Z" fill="#01ABAA"/>
-        <path id="Vector 2" d="M586.25 185.1C566.23 185.1 550 201.33 550 221.35C550 241.37 566.23 257.6 586.25 257.6C606.27 257.6 622.5 241.37 622.5 221.35C622.5 201.33 606.27 185.1 586.25 185.1Z" fill="black"/>
+        <path id="black_circle" d="M586.25 185.1C566.23 185.1 550 201.33 550 221.35C550 241.37 566.23 257.6 586.25 257.6C606.27 257.6 622.5 241.37 622.5 221.35C622.5 201.33 606.27 185.1 586.25 185.1Z" fill="black"/>
         <path id="Vector 4" d="M945.77 421.73C933.824 421.73 924.14 431.414 924.14 443.36C924.14 455.306 933.824 464.99 945.77 464.99C957.716 464.99 967.4 455.306 967.4 443.36C967.4 431.414 957.716 421.73 945.77 421.73Z" fill="#01ABAA"/>
         <path id="Vector 6" d="M1052.38 342.055C1115.14 344.33 1174.92 365.511 1232 388.694C1289.08 411.877 1345.63 437.542 1406.84 449.823C1446.24 457.723 1491.3 458.847 1523.05 436.759C1553.64 415.464 1563.52 378.811 1568.79 344.773C1572.79 319.155 1575.13 292.197 1564.19 268.221C1556.6 251.57 1543.11 237.581 1533.78 221.638C1501.32 166.154 1524.27 97.7292 1559.44 43.5573C1575.93 18.1469 1595.07 -6.09312 1607.8 -33.146C1620.54 -60.1989 1626.45 -91.1974 1615.34 -118.798C1604.3 -146.172 1577.99 -166.693 1549.49 -181.097C1491.61 -210.444 1423.42 -218.854 1356.89 -223.574C1209.65 -234.108 1061.63 -229.549 913.998 -224.98C859.371 -223.29 804.491 -221.572 750.746 -212.709C720.896 -207.801 690.087 -200.013 668.422 -181.22C640.909 -157.367 634.092 -116.967 652.527 -87.0536C683.444 -36.8745 768.9 -24.4053 790.536 29.4457C802.425 59.0849 790.216 92.1034 772.925 119.591C735.85 178.567 673.688 230.304 670.42 297.719C668.17 343.971 698.048 390.374 744.249 412.283C792.679 435.249 859.826 432.36 895.534 394.348C932.308 355.053 996.962 340.035 1052.38 342.055Z" fill="#01ABAA"/>
         </g>
@@ -32,52 +38,49 @@
         </clipPath>
         </defs>
         </svg>
+      <!-- CORNER SVG END-->
         
     <!-- NAV -->
-    
+    <section id="nav">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12 d-flex justify-content-center">
       <nav class="navbar navbar-expand-lg navbar-dark bg_transparent ">
+          <a class="navbar-brand brand_title" href="#">Lyricalyze</a>
+          <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon dark_text"></span>
+          </button>
         
-        <a class="navbar-brand brand_title" href="#">Lyricalyze</a>
-        <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- <div class="col-md-8"> -->
+        <!-- COLLAPSE -->
         <div class="collapse navbar-collapse" id="navbarNav">
           
           <ul class="navbar-nav">
             <li class="nav-item nav_item">
-              <a class="nav-link nav_link" href="#">Get Started <span class="sr-only">(current)</span></a>
+              <a class="nav-link nav_link" href="#search">Get Started <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item nav_item">
-              <a class="nav-link nav_link" href="#">Features</a>
+              <a class="nav-link nav_link" href="#about">About</a>
             </li>
             <li class="nav-item nav_item">
               <a class="nav-link nav_link" href="#">Advanced</a>
             </li>
-            
           </ul>
-        
         </div>
-      <!-- </div> -->
       </nav>
     </div>
     </div>
     </div>
-  
+  </section>
     <!-- END NAV -->
 
-    
-
     <!-- MAIN PAGE -->
-    <!-- <div class="container-fluid main_page"> -->
-      <div class="row">
-        <div class="col-md-6">
-          <div class="center_container">
-           
-              <svg viewBox="0 0 1100 726" fill="none" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+    <section id="home">
+    <div class="container-fluid main_page">
+      <div class="row justify-content-center">
+        <div class="col-md-6 svg_container">
+          <div class="center_container ">
+            <!-- MAIN ANIMATED SVG -->
+            <svg class="main_svg" viewBox="0 0 1100 726" fill="none" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
                 <g id="music3 1">
                 <g id="background">
                 <path id="Vector" d="M985.58 392.72C997.526 392.72 1007.21 383.036 1007.21 371.09C1007.21 359.144 997.526 349.46 985.58 349.46C973.634 349.46 963.95 359.144 963.95 371.09C963.95 383.036 973.634 392.72 985.58 392.72Z" fill="#01abaa"/>
@@ -303,30 +306,40 @@
                 <stop offset="1" stop-color="#808080" stop-opacity="0.1"/>
                 </linearGradient>
                 </defs>
-                </svg>
+              </svg>
+            <!-- MAIN ANIMATED SVG END-->
             </div>
         </div>
+        <!-- TITLE AND DESCRIPTION -->
         <div class="col-md-6">
           <div class="center_container">
             <p class="h1 title">Lyricalyze</p>
-            <h3 class="description">Add song lyrics to analyze trends or <br> have a new song generated <br> from a machine learning algorithm</h3>
+            <div class="desc_container">
+              <h3 class="description">Add song lyrics to analyze trends or have a new song generated from a machine learning algorithm</h3>
+            </div>
             <button class=" btn main_button">Get Started</button>
           </div>
         </div>
       </div>
     </div>
+  </section>
     <!-- END MAIN PAGE -->
 
     <!-- ABOUT PAGE-->
     <section id="about">
       <div class="container-fluid primary_light_container about_container">
-        <div class="row">
-          <div class="col-md-6">
-            <h2 class="about_title">About / How to Use</h2>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias impedit nesciunt, nostrum omnis totam fugit minus architecto rem facilis ipsam iure nulla eaque repellendus aliquid nisi alias inventore reiciendis, temporibus iusto adipisci laudantium natus, pariatur fugiat? Eius tempora nam explicabo.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam deleniti doloremque sunt, omnis rem nesciunt quas ratione hic ut? Modi error earum, nisi dolorum adipisci debitis, ut reprehenderit expedita deserunt nulla officia iure recusandae sit repudiandae sapiente? Quasi, nam placeat.</p>
+        <div class="row justify-content-center align-items-center">
+          <div class="col-xl-4  p-md-5">
+            <h2 class="about_title text-sm-center text-xl-left">About / How to Use</h2>
+            <p class="line_height"><span class="font-weight-bold underline">About:</span></p>
+            <p class="line_height">Lyricalyze searches the Spotify API as you type, then grabs the lyrics of that song off of the Genius API once you have selected it. 
+              The lyrics of all the songs selected are then compared and the amount of times words are used between songs is displayed.</p>
+              <p class="line_height"><span class="font-weight-bold underline">How to Use:</span></p>
+            <p class="line_height">Search for songs below to add them to the data set. A maximum of <span class="font-weight-bold">8</span> songs can be added.</p>
+            <p class="line_height">Once you have your songs, hit the analyze button to see which words they have in common.</p>
           </div>
-          <div class="col-md-6 about_svg_container">
+          <div class="col-xl-5 p-lg-5 about_svg_container">
+            <!-- ABOUT SVG -->
             <svg viewBox="0 0 824 540" fill="none" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
               <g id="datasvg" clip-path="url(#clip0)">
               <g id="guy">
@@ -377,83 +390,163 @@
               </clipPath>
               </defs>
               </svg>
-              
+            <!-- ABOUT SVG END-->
           </div>
         </div>
       </div>
     </section>
     <!-- END ABOUT PAGE-->
 
+    <!-- SEARCH PAGE -->
+    <section id="search">
 
-    <!-- GET STARTED PAGE -->
-  <!-- <div class="container-fluid start_page">
-    <div class="row">
-      <div class="col-md-6 blue_container">
-        <div class="center_container">
-          <h2 class="start_title">Input songs to <br>add to database</h2>
+      <div class="container-fluid search_page">
+        <div class="row justify-content-center">
+          <div class="col-12 d-flex justify-content-center align-items-center">
+          <h2 class="search_title">Search for Songs</h2>
+        </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-7 d-flex justify-content-center">
+          <!-- SEARCH BAR / FORM -->
           <div class="form">
-          <input class="song_input" name="name" autocomplete="off" type="text" placeholder="" required size="48">
-          <label for="name" class="label_name">
-            <span class="content_name">URL</span>
-          </label>
-        </div>
-        </div>
-      </div>
-      <div class="col-md-6 dark_container">
-        <div class="center_container">
-          <h2 class="start_title">Songs Selected</h2>
-          <ul class="list-unstyled">
-            <li>
-              <p class="song_selected">Hail to the King <span class="light_text">-</span> Avenged Sevenfold</p>
-            </li>
-            <li>
-              <p class="song_selected">Zombie <span class="light_text">-</span> Cranberries</p>
-            </li>
-            <li>
-              <p class="song_selected">Kryptonite <span class="light_text">-</span> 3 Doors Down</p>
-            </li>
-          </ul>
+            <input class="song_input" name="name" autocomplete="off" type="text" placeholder="" required size="48">
+            <label for="name" class="label_name">
+              <span class="content_name">Song Name or Artist:</span>
+            </label>
+          </div>
         </div>
       </div>
-    </div>
-  </div> -->
-    <!-- END GET STARTED PAGE -->
 
-    <!-- FEATURES PAGE -->
+        <!-- CAROUSEL -->
 
-    <!-- <div class="container-fluid features_page">
-      <div class="row">
-        <div class="col-md-4 center_container accent_1_container">
-          <h3 class="features_title">Most Common Words</h3>
+        <div id="songCarousel" class="carousel slide song_carousel" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="container w-100 d-flex justify-content-center">
+                <div class="card d-flex flex-column align-items-center pt-3">
+                  <img src="./img/song_1.png" alt="placeholder image" class="card_image">
+                  <h3 class="card_title">Blinding Lights</h3>
+                  <p class="card_desc align-self-start"><span class="card_tag">Artist:</span> The Weeknd</p>
+                  <p class="card_desc align-self-start"><span class="card_tag">Album:</span> Blinding Lights (2019)</p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="container w-100 d-flex justify-content-center">
+                <div class="card d-flex flex-column align-items-center pt-3">
+                  <img src="./img/song_2.png" alt="placeholder image" class="card_image">
+                  <h3 class="card_title">Bohemian Rhapsody</h3>
+                  <p class="card_desc align-self-start"><span class="card_tag">Artist:</span> Queen</p>
+                  <p class="card_desc align-self-start"><span class="card_tag">Album:</span> A Night at the Opera (1975)</p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="container w-100 d-flex justify-content-center">
+                <div class="card d-flex flex-column align-items-center pt-3">
+                  <img src="./img/song_3.jpg" alt="placeholder image" class="card_image">
+                  <h3 class="card_title">Billie Jean</h3>
+                  <p class="card_desc align-self-start"><span class="card_tag">Artist:</span> Michael Jackson</p>
+                  <p class="card_desc align-self-start"><span class="card_tag">Album:</span> Thriller (1982)</p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="container w-100 d-flex justify-content-center">
+                <div class="card d-flex flex-column align-items-center pt-3">
+                  <img src="./img/song_4.jpg" alt="placeholder image" class="card_image">
+                  <h3 class="card_title">Mr. Blue Sky</h3>
+                  <p class="card_desc align-self-start"><span class="card_tag">Artist:</span> Electric Lights Orchestra</p>
+                  <p class="card_desc align-self-start"><span class="card_tag">Album:</span> Out of the Blue (1977)</p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="container w-100 d-flex justify-content-center">
+                <div class="card d-flex flex-column align-items-center pt-3">
+                  <img src="./img/song_5.jpg" alt="placeholder image" class="card_image">
+                  <h3 class="card_title">Tiny Dancer</h3>
+                  <p class="card_desc align-self-start"><span class="card_tag">Artist:</span> Elton John</p>
+                  <p class="card_desc align-self-start"><span class="card_tag">Album:</span> Madman Across the Water (1971)</p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="container w-100 d-flex justify-content-center">
+                <div class="card d-flex flex-column align-items-center pt-3">
+                  <img src="./img/song_6.jpg" alt="placeholder image" class="card_image">
+                  <h3 class="card_title">Love Space</h3>
+                  <p class="card_desc align-self-start"><span class="card_tag">Artist:</span> Tatsuro Yamashita</p>
+                  <p class="card_desc align-self-start"><span class="card_tag">Album:</span> Spacy (1977)</p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="container w-100 d-flex justify-content-center">
+                <div class="card d-flex flex-column align-items-center pt-3">
+                  <img src="./img/song_7.jpg" alt="placeholder image" class="card_image">
+                  <h3 class="card_title">Simple Man</h3>
+                  <p class="card_desc align-self-start"><span class="card_tag">Artist:</span> Lynyrd Skynyrd</p>
+                  <p class="card_desc align-self-start"><span class="card_tag">Album:</span> (Pronounced 'Lĕh-'nérd 'Skin-'nérd) (1973)</p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="container w-100 d-flex justify-content-center">
+                <div class="card d-flex flex-column align-items-center pt-3">
+                  <img src="./img/song_8.jpg" alt="placeholder image" class="card_image">
+                  <h3 class="card_title">Piano Man</h3>
+                  <p class="card_desc align-self-start"><span class="card_tag">Artist:</span> Billy Joel</p>
+                  <p class="card_desc align-self-start"><span class="card_tag">Album:</span> Piano Man (1973)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a class="carousel-control-prev dark_text" href="#songCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next dark_text" href="#songCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
-        <div class="col-md-4 center_container accent_3_container">
-          <h3 class="features_title">Auto-Encoder</h3>
-        </div>
-        <div class="col-md-4 center_container accent_2_container">
-          <h3 class="features_title light_text">Download .CSV</h3>
+        <!-- CAROUSEL END -->
+      </div>
+    </section>
+    <!-- END SEARCH PAGE -->
+
+  </div>
+
+    <!-- FOOTER -->
+    <section id="footer">
+      <div class="container-fluid footer_container">
+        <div class="row">
+          <div class="col-md-6 p-5 d-flex flex-column justify-content-center align-items-center">
+            <h1 class="light_text footer_title">Lyricalyze</h1>
+            <div class="d-flex justify-content-center align-items-center">
+              <a href="http://www.twitter.com" target="_blank"><i class="fa fa-twitter light_text icon_size" aria-hidden="true"></i></a>
+              <a href="http://www.facebook.com" target="_blank"><i class="fa fa-facebook-official light_text icon_size" aria-hidden="true"></i></a>
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+              <a href="http://www.instagram.com" target="_blank"><i class="fa fa-instagram light_text icon_size " aria-hidden="true"></i></a>
+              <a href="http://www.twitch.tv" target="_blank"><i class="fa fa-twitch light_text icon_size" aria-hidden="true"></i></a>
+          </div>
+          </div>
+          <div class="col-md-6 p-5 d-flex justify-content-center align-items-center">
+            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3197.604377585967!2d-119.78794904867428!3d36.73206167986437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809460a5d033c593%3A0xaaddea0558f9026c!2sGeekwise%20Academy!5e0!3m2!1sen!2sus!4v1607035763494!5m2!1sen!2sus" width="300" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+          </div>
         </div>
       </div>
-    </div> -->
+    </section>
+    <!-- END FOOTER -->
 
-    <!-- END FEATURES PAGE -->
-
-    <!-- ADVANCED PAGE -->
-
-    <!-- <div class="container-fluid advanced_page">
-      <div class="row">
-        <div class="col-md-12 center_container primary_light_container">
-          <h2 class="advanced_title accent_2">LSTM</h2>
-          <h3 class="description">Generate a song using current dataset or upload your own .csv</h3>
-        </div>
-      </div>
-    </div> -->
-
-    <!-- END ADVANCED PAGE -->
-
-    
+    <!-- JQUERY AND BOOTSTRAP -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <script src="js/bootstrap.min.js"></script>
+    <!-- JAVASCRIPT FILE -->
     <script src="js/app.js"></script>
   </body>
 </html>
