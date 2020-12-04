@@ -49,9 +49,9 @@ $(window).resize(function() {
   }
   if(document.documentElement.clientWidth < 1650) {
     carouselDisplay = 1
-    // $('.carousel .carousel-item').each(function(){
-    //   console.log($(this).children().children().children())
-    // })
+    $('.carousel .carousel-item').each(function(){
+      console.log($(this).children().children().children())
+    })
   }
   if(document.documentElement.clientWidth < 1320) {
     carouselDisplay = 0
