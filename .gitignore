@@ -6,3 +6,8 @@ flask_api/Lyricly/__pycache__/__init__.cpython-39.pyc
 flask_api/__pycache__/app.cpython-39.pyc
 flask_api/.vscode/settings.json
 flask_api/Lyricly/.env
+.vscode/settings.json
+Lyricly/.env
+Pipfile
+Pipfile.lock
+settings.json
