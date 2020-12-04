@@ -14,7 +14,7 @@ from Lyricly import db
     
 class Lyrics(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    artist = db.Column(db.String(40), nullable=False, )
+    artist = db.Column(db.String(100), nullable=False)
     title = db.Column(db.String(100), nullable=False)
     lyrics = db.Column(db.Text)
     # save document vectors to the database

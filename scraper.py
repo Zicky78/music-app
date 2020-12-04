@@ -6,6 +6,7 @@ import lyricsgenius
 import re
 import sqlite3 
 
+
 load_dotenv()
 
 client_access_token = getenv('CLIENT_ACCESS_TOKEN')

@@ -38,7 +38,7 @@ def login():
 
 
 # Session Engine
-
+# TODO: Rewrite for clean up and optimization 
 @app.route('/song', methods=['POST'])
 def song_search():
     print("Incoming...")
@@ -84,80 +84,101 @@ def song_search():
     return jsonify(data)
 
 
-''' Route that makes a database call to the lyrics column to pull lyrics and analyze word count to be sent to the front end '''
+''' Route that makes a database call to pull lyrics by artist and song title sent from front end
+    and analyze word count to be sent back to the front end '''
+    
 # FIXME: database is not querying certain songs correctly 
 # FIXME: rewrite entire route for optimization. 
 
 @app.route('/word_count', methods=['POST'])
 def word_count():
-    # catch incoming json
-    print("Incoming...")
-    print(request.get_json())
-    data = request.get_json()
-    print(data[0]['artist'])
-    print(data[0]['title'])
-    # lists 
-    band = []
-    name = []
-    words = []
-    list = []
-    dict = {}
-    # iterate through json format
-    for i in data:
-        band.append(i['artist'])
-        name.append(i['title'])
-    for i in range(len(band)):
-        # artist and song title at the index of i
-        a = band[i]
-        t = name[i]
-        # query to check databse for song
-        query = Lyrics.query.filter_by(artist=band[i], title=name[i]).first()
-        print(query)
-        db.session.commit()
+    # First pass solution
+    
+    # # catch incoming json
+    # print("Incoming...")
+    # print(request.get_json())
+    # data = request.get_json()
+    # print(data[0]['artist'])
+    # print(data[0]['title'])
+    # # lists 
+    # band = []
+    # name = []
+    # words = []
+    # list = []
+    # dict = {}
+    # # iterate through json format
+    # for i in data:
+    #     band.append(i['artist'])
+    #     name.append(i['title'])
+    # for i in range(len(band)):
+    #     # artist and song title at the index of i
+    #     a = band[i]
+    #     t = name[i]
+    #     # query to check databse for song
+    #     query = Lyrics.query.filter_by(artist=band[i], title=name[i]).first()
+    #     print(query)
+    #     db.session.commit()
         
-        # if the query of a song from database results in None
-        if query == None:
-            print('Query of {} By: {} resulted in None'.format(t, a))
-            load_dotenv()
-            # API access
-            client_access_token = getenv('CLIENT_ACCESS_TOKEN')
-            genius = lyricsgenius.Genius(client_access_token, remove_section_headers=True,
-                                    skip_non_songs=True, excluded_terms=[])
+    #     # if the query of a song from database results in None
+    #     if query == None:
+    #         print('Query of {} By: {} resulted in None'.format(t, a))
+    #         load_dotenv()
+    #         # API access
+    #         client_access_token = getenv('CLIENT_ACCESS_TOKEN')
+    #         genius = lyricsgenius.Genius(client_access_token, remove_section_headers=True,
+    #                                 skip_non_songs=True, excluded_terms=[])
 
-            # song search
-            search = genius.search_song(t, artist=a, get_full_info=True)
-            print(search)
-            # list for database conversion
-            artist = []
-            title = []
-            lyrics = []
-            artist.append(search.artist)
-            title.append(search.title)
-            lyrics.append(search.lyrics)
+    #         # song search
+    #         search = genius.search_song(t, artist=a, get_full_info=True)
+    #         print(search)
+    #         # list for database conversion
+    #         artist = []
+    #         title = []
+    #         lyrics = []
+    #         artist.append(search.artist)
+    #         title.append(search.title)
+    #         lyrics.append(search.lyrics)
 
-            tracklist = pd.DataFrame(
-                {'artist': artist, 'title': title, 'lyrics': lyrics})
+    #         tracklist = pd.DataFrame(
+    #             {'artist': artist, 'title': title, 'lyrics': lyrics})
 
-            tracklist.to_sql("lyrics", sqlite3.connect(
-            "Lyricly\songs.sqlite3"), if_exists='append', index=False)
+    #         tracklist.to_sql("lyrics", sqlite3.connect(
+    #         "Lyricly\songs.sqlite3"), if_exists='append', index=False)
             
-            # song name dictionary with word_freq tuple values
+    #         # song name dictionary with word_freq tuple values
         
-        new_query = Lyrics.query.filter_by(artist=band[i], title=name[i]).first()
-        print(new_query)
-        db.session.commit()
-        # tuple list 
-        lyrics = new_query.lyrics
-        list = word_freq(lyrics)
+    #     new_query = Lyrics.query.filter_by(artist=band[i], title=name[i]).first()
+    #     print(new_query)
+    #     db.session.commit()
+    #     # tuple list 
+    #     lyrics = new_query.lyrics
+    #     list = word_freq(lyrics)
         
-        key = name[i] + ' By: ' + band[i]
-        dict.setdefault(key, []).append(list)
-        print(dict)
-    #         # tuple list
-    #         lyrics = query.lyrics
-    #         list = word_freq(lyrics)
-    #         print(list)
+    #     key = name[i] + ' By: ' + band[i]
+    #     dict.setdefault(key, []).append(list)
+    #     print(dict)
+    # #         # tuple list
+    # #         lyrics = query.lyrics
+    # #         list = word_freq(lyrics)
+    # #         print(list)
             
-    #         return "~~~~~~~~~~"
-    #         # for loop to pass lyrics through function with key value of artist and song name
-    return "~~~~~~~~~~"
+    # #         return "~~~~~~~~~~"
+    # #         # for loop to pass lyrics through function with key value of artist and song name
+    # return "~~~~~~~~~~"
+    
+    pass
+
+
+# TODO: machine learning / AI song generator route 
+
+@app.route('/song_generator', methods=['POST'])
+def song_generator():
+    pass
+
+
+
+
+# TODO: cosine similarity song suggestor route
+@app.route('/song_suggestor', methods=['POST'])
+def song_suggestor():
+    pass
