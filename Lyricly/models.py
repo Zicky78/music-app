@@ -14,7 +14,7 @@ from Lyricly import db
     
 class Lyrics(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    artist = db.Column(db.String(100), nullable=False)
+    artist = db.Column(db.String(40), nullable=False)
     title = db.Column(db.String(100), nullable=False)
     lyrics = db.Column(db.Text)
     # save document vectors to the database
@@ -22,3 +22,14 @@ class Lyrics(db.Model):
     
     def __repr__(self):
         return f"lyrics('{self.artist}', '{self.title}', '{self.lyrics}')"
+    
+class Wordcount(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    artist = db.Column(db.String(40), nullable=False)
+    title = db.Column(db.String(100), nullable=False)
+    lyrics = db.Column(db.Text)
+    # save document vectors to the database
+    
+    
+    def __repr__(self):
+        return f"wordcount('{self.artist}', '{self.title}', '{self.lyrics}')"

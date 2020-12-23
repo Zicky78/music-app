@@ -6,13 +6,14 @@ import requests
 import sqlalchemy
 import sqlite3
 import os 
+import json
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from Lyricly.word_count import word_freq
 from Lyricly import db
 from Lyricly import app
 from Lyricly.forms import RegistrationForm, LoginForm
-from Lyricly.models import Lyrics
+from Lyricly.models import Lyrics, Wordcount
 from os import getenv
 from dotenv import load_dotenv
 from flask import render_template, url_for, flash, redirect, jsonify, request
@@ -88,85 +89,72 @@ def song_search():
     and analyze word count to be sent back to the front end '''
     
 # FIXME: database is not querying certain songs correctly 
-# FIXME: rewrite entire route for optimization. 
+# FIXME: rewrite entire route for better optimization. 
 
 @app.route('/word_count', methods=['POST'])
 def word_count():
-    # First pass solution
     
-    # # catch incoming json
-    # print("Incoming...")
-    # print(request.get_json())
-    # data = request.get_json()
-    # print(data[0]['artist'])
-    # print(data[0]['title'])
-    # # lists 
-    # band = []
-    # name = []
-    # words = []
-    # list = []
-    # dict = {}
-    # # iterate through json format
-    # for i in data:
-    #     band.append(i['artist'])
-    #     name.append(i['title'])
-    # for i in range(len(band)):
-    #     # artist and song title at the index of i
-    #     a = band[i]
-    #     t = name[i]
-    #     # query to check databse for song
-    #     query = Lyrics.query.filter_by(artist=band[i], title=name[i]).first()
-    #     print(query)
-    #     db.session.commit()
-        
-    #     # if the query of a song from database results in None
-    #     if query == None:
-    #         print('Query of {} By: {} resulted in None'.format(t, a))
-    #         load_dotenv()
-    #         # API access
-    #         client_access_token = getenv('CLIENT_ACCESS_TOKEN')
-    #         genius = lyricsgenius.Genius(client_access_token, remove_section_headers=True,
-    #                                 skip_non_songs=True, excluded_terms=[])
+    # catch incoming json
 
-    #         # song search
-    #         search = genius.search_song(t, artist=a, get_full_info=True)
-    #         print(search)
-    #         # list for database conversion
-    #         artist = []
-    #         title = []
-    #         lyrics = []
-    #         artist.append(search.artist)
-    #         title.append(search.title)
-    #         lyrics.append(search.lyrics)
-
-    #         tracklist = pd.DataFrame(
-    #             {'artist': artist, 'title': title, 'lyrics': lyrics})
-
-    #         tracklist.to_sql("lyrics", sqlite3.connect(
-    #         "Lyricly\songs.sqlite3"), if_exists='append', index=False)
-            
-    #         # song name dictionary with word_freq tuple values
-        
-    #     new_query = Lyrics.query.filter_by(artist=band[i], title=name[i]).first()
-    #     print(new_query)
-    #     db.session.commit()
-    #     # tuple list 
-    #     lyrics = new_query.lyrics
-    #     list = word_freq(lyrics)
-        
-    #     key = name[i] + ' By: ' + band[i]
-    #     dict.setdefault(key, []).append(list)
-    #     print(dict)
-    # #         # tuple list
-    # #         lyrics = query.lyrics
-    # #         list = word_freq(lyrics)
-    # #         print(list)
-            
-    # #         return "~~~~~~~~~~"
-    # #         # for loop to pass lyrics through function with key value of artist and song name
-    # return "~~~~~~~~~~"
+    data = request.get_json()
+    load_dotenv()
     
-    pass
+    # artist and title stacks
+    artist_stack = []
+    title_stack = []
+    list = []
+    dict = {} 
+    
+    for i in data: 
+        artist_stack.append(i['artist'])
+        title_stack.append(i['title'])
+    
+    #     
+    for i in range(len(artist_stack)):
+        first_query = Lyrics.query.filter_by(artist=artist_stack[i], title=title_stack[i]).first()
+        db.session.commit()
+        if first_query is None:
+            
+            
+            client_access_token = getenv('CLIENT_ACCESS_TOKEN')
+            genius = lyricsgenius.Genius(client_access_token, remove_section_headers=True,
+                                skip_non_songs=True, excluded_terms=[])
+
+            # song search
+            search = genius.search_song(title_stack[i], artist=artist_stack[i], get_full_info=True)
+            
+            # list for database conversion
+            artist = []
+            title = []
+            lyrics = []
+            artist.append(search.artist)
+            title.append(search.title)
+            lyrics.append(search.lyrics)
+            tracklist = pd.DataFrame({'artist': artist, 'title': title, 'lyrics': lyrics})
+            tracklist.to_sql("wordcount", sqlite3.connect("Lyricly\songs.sqlite3"), if_exists='replace', index=True, index_label='id')
+                
+        
+        second_query = Wordcount.query.filter_by(artist=artist_stack[i], title=title_stack[i]).first()
+        
+        if second_query is None:
+            print('\n [///~~~Query of {} By: {} failed~~~///]\n'.format(title_stack[i], artist_stack[i]))
+            # TODO: database call to check if lyrics exist, if it doesnt exist, scrape from a different api / page
+            continue
+            
+        lyrics = second_query.lyrics
+        list = word_freq(lyrics)
+        
+        key = title_stack[i] + ' By: ' + artist_stack[i]
+        dict.setdefault(key, []).append(list)
+    
+    json_object = json.dumps(dict, indent=1)
+    print(json_object)
+    return jsonify(json_object)
+
+
+
+
+
 
 
 # TODO: machine learning / AI song generator route 
