@@ -13,10 +13,17 @@ from Lyricly import db
 #         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
     
 class Lyrics(db.Model):
+    
+    __tablename__ = 'Lyrics'
     id = db.Column(db.Integer, primary_key=True)
     artist = db.Column(db.String(40), nullable=False)
     title = db.Column(db.String(100), nullable=False)
     lyrics = db.Column(db.Text)
+    
+    def __init__(self, artist, title, lyrics):
+        self.artist = artist
+        self.title = title
+        self.lyrics = lyrics
     # save document vectors to the database
     
     
